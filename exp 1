@@ -1,0 +1,49 @@
+/*
+package experiment.pkg2;
+import java. util. *;
+public class Experiment2 {  
+ public static void main(String[] args) {
+       Scanner obj=new Scanner(System.in);
+       int a=obj.nextInt();
+       System.out.println("enter the value of a");
+       System.out.println("value1:"+a);
+       int b=obj.nextInt();
+       System.out.println("enter the value of b);
+       System.out.println("value2:"+b);
+       if(a>b)
+           System.out.println("a is greater than b");
+       else
+           System.out.println("b is greater than a");
+                   
+       
+    }
+    /*
+    package experiment2;
+import java. util. *;
+public class Experiment2 {
+public static void main(String[] args) {
+   Scanner obj=new Scanner(System.in);
+    int rollnumber = obj.nextInt();
+     System.out.println("enter the rollnumber);
+    System.out.println("rollnumber:"+rollnumber);
+   String name = obj.next();
+    System.out.println("enter the name);
+   System.out.println("name:"+name);
+   int mark = obj.nextInt();
+   System.out.println("enter the mark);
+   System.out.println("mark:"+mark);
+   if(mark>90&&mark<100)
+       System.out.println("congratulation you got O grade");
+   else if(mark>80&&mark<90)
+       System.out.println("congratulation you got A grade");
+   else if (mark>70&&mark<80)
+       System.out.println("congratulation you got B grade");
+   else if(mark>60&&mark<70)
+       System.out.println("congatulation you got C grade");
+   else
+       System.out.println("fail");
+   }
+       
+    }
+   
+}
