@@ -1,0 +1,185 @@
+//1.greet message according to mark
+
+package sapexp2;
+
+import java.util.Scanner;
+
+
+public class Sapexp2 {
+
+    
+    public static void main(String[] args) {
+        {
+        Scanner obj=new Scanner(System.in);
+        String name=obj.next();
+        System.out.println("name:"+name);
+        int rollno=obj.nextInt();
+        System.out.println("rollno:"+rollno);
+        int totalmark=obj.nextInt();
+        System.out.println("totalmark:"+totalmark);
+        if(totalmark>90 && totalmark<100)
+        {
+            System.out.println("congratulations you are pass with O grade");
+        }
+        else if(totalmark>90 && totalmark<80)
+        {
+            System.out.println("you are pass with A grade");
+        }
+        else if(totalmark>80 && totalmark<70)
+        {
+            System.out.println("you are pass with B grade");
+        }
+        else if(totalmark>70 && totalmark<60)
+        {
+            System.out.println("you are pass with c grade");
+        }
+        else if(totalmark>60 && totalmark<50)
+        {
+            System.out.println("you are just pass with D grade");
+        }
+        else
+        {
+            System.out.println("you are fail");
+        }
+        
+    }
+    
+}
+
+       
+    }
+    
+}
+
+//2.To find largest and smallest from an array
+
+package experiment.pkg1;
+
+import java.util.*;
+
+public class Experiment 
+{
+
+    public static void main(String[] args)
+    {
+        Scanner obj=new Scanner(System.in);
+        System.out.println("no.of.elements");
+        int n=obj.nextInt();
+        System.out.println("no.of.elements"+n);
+        int[] a =new int[10];
+        
+        System.out.println("enter the elements");
+        for(int i=0;i<=n;i++)
+        {
+            a[i]=obj.nextInt();
+        }
+ int smallest = a[0];
+ int largest = a[0];
+ 
+ for(int i=1; i< a.length; i++)
+ {
+    if(a[i] > largest)
+        largest = a[i];
+    else if (a[i] < smallest)
+         smallest = a[i];
+ 
+ }
+ System.out.println("Smallest Number is : " + smallest);
+ System.out.println("Largest Number is : " + largest); 
+    }
+}   
+
+//3.to find the greatest number using command line argument 
+
+package experiment.pkg1;
+import java.util.*;
+
+
+public class Experiment1 {
+
+   
+    public static void main(String[] args)
+    {
+        Scanner obj=new Scanner(System.in);
+        int a=obj.nextInt();
+        System.out.println("first value:"+a);
+        int b=obj.nextInt();
+        System.out.println("second value:"+b);
+        if(a>b)
+        {
+            System.out.println("a is greater then b");
+        }
+        else
+        {
+            System.out.println("b is greater than a");
+        }
+         // TODO code application logic here
+    }
+   
+}
+
+//4.number pattern
+
+package sap.pkg1;
+import java.util.*;
+
+
+public class Sap 
+{
+    public static void main(String[] args)
+    {
+        Scanner obj=new Scanner(System.in);
+        System.out.println(" enter size n:");
+        int n=obj.nextInt();
+        
+        
+        int i,j;
+        for(i=1;i<=n;i++)
+        {
+            for(j=1;j<=i;j++)
+            {
+                System.out.print(j);
+            }
+            System.out.println();
+        }
+    }
+}
+
+/* enter size n:
+6
+1
+12
+123
+1234
+12345
+123456
+*/
+
+//5.two concatenate two strings
+//"hello world"
+
+package sap.pkg1;
+
+public class Sap 
+
+{
+    
+    public static void main(String[] args)
+    {
+        String str1 = "Hello";
+        String str2 = "World";
+        String result = "";
+
+    for (int i = 0; i < str1.length(); i++) 
+    {
+       result += str1.charAt(i);
+    } 
+
+    for (int i = 0; i < str2.length(); i++)  
+    {
+       result += str2.charAt(i);
+    }
+
+   System.out.println(result);
+    }
+}
