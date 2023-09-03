@@ -1,0 +1,140 @@
+public class javaApplication{
+    public static void main(String[] args) {
+      
+        Author author = new Author("John Doe", "johndoe@example.com", 'M');
+       
+        Book book = new Book("The Great Book", author, 19.99, 10);
+        
+       
+        System.out.println(book.toString());
+        
+        book.setPrice(24.99);
+        book.setQty(5);
+        
+        System.out.println(book.toString());
+    }
+}
+
+class Author {
+    private String name;
+    private String email;
+    private char gender;
+
+    public Author(String name, String email, char gender) {
+        this.name = name;
+        this.email = email;
+        this.gender = gender;
+    }
+
+ 
+    public String toString() {
+        return "Author[name=" + name + ", email=" + email + ", gender=" + gender + "]";
+    }
+}
+
+class Book {
+    private String name;
+    private Author author;
+    private double price;
+    private int qty;
+
+    public Book(String name, Author author, double price) {
+        this.name = name;
+        this.author = author;
+        this.price = price;
+        this.qty = 0;
+    }
+
+    public Book(String name, Author author, double price, int qty) {
+        this.name = name;
+        this.author = author;
+        this.price = price;
+        this.qty = qty;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+
+   
+    public String toString() {
+        return "Book[name=" + name + ", Author=" + author.toString() + ", price=" + price + ", qty=" + qty + "]";
+    }
+}
+
+// 
+
+import java.util.Scanner;
+
+public class Main
+{
+    public static void main(String args[]) {
+
+        Scanner in = new Scanner(System.in);
+        System.out.println("enter how many students:");
+        int TOTAL_STUDENTS=in.nextInt();
+        int rollNo[] = new int[TOTAL_STUDENTS];
+        String name[] = new String[TOTAL_STUDENTS];
+        int totalWorkingDays[]= new int[TOTAL_STUDENTS];
+        int daysPresent []= new int[TOTAL_STUDENTS];
+        double attendancePercentage[] =  new double[TOTAL_STUDENTS];
+        int attendanceMarks[] = new int[TOTAL_STUDENTS];
+
+        for (int i = 0; i < TOTAL_STUDENTS; i++) {
+            
+            System.out.println("Enter student " + (i+1) + " details:");
+            System.out.print("Roll No: ");
+            rollNo[i] = in.nextInt();
+            in.nextLine();
+            System.out.print("Name: ");
+            name[i] = in.nextLine();
+            System.out.print("Enter total number of working days in the semester: ");
+             totalWorkingDays[i] = in.nextInt();
+             System.out.print("Enter number of days present: ");
+             daysPresent[i] = in.nextInt();
+
+            
+        attendancePercentage[i] = (double) daysPresent[i] / totalWorkingDays[i] * 100;
+
+      
+        if (attendancePercentage[i] >= 90) {
+            attendanceMarks[i] = 5;
+        } else if (attendancePercentage[i] >= 80) {
+           attendanceMarks[i] = 4;
+        } else if (attendancePercentage[i] >= 75) {
+           attendanceMarks[i] = 3;
+        } else {
+            attendanceMarks[i] = 0;
+        }
+        }
+        
+        System.out.println();
+        
+        for (int i = 0; i < TOTAL_STUDENTS; i++) {
+        System.out.println("Name:"+name[i]);
+        System.out.println("Attendance Percentage: " + attendancePercentage[i] + "%");
+        System.out.println("Attendance Marks: " + attendanceMarks[i]);
+
+        }
+    }
+}
