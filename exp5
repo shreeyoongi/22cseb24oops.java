@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+public class DistanceFromAverageWithExceptionHandling {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        try {
+            System.out.print("Enter the array size (up to 20): ");
+            int size = Integer.parseInt(input.nextLine());
+
+            if (size < 0 || size > 20) {
+                System.out.println("Invalid array size. Please enter a size between 0 and 20.");
+                return;
+            }
+
+            double[] values = new double[size];
+            double sum = 0;
+            for (int i = 0; i < size; i++) {
+                System.out.print("Enter value #" + (i + 1) + ": ");
+                try {
+                    values[i] = Double.parseDouble(input.nextLine());
+                    sum += values[i];
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid input. Please enter a valid double value.");
+                    i--; // Decrement i to re-enter the current value.
+                }
+            }
+
+            double average = sum / size;
+
+            System.out.println("\nValues and their distances from the average:");
+            for (int i = 0; i < size; i++) {
+                double distance = Math.abs(values[i] - average);
+                System.out.printf("Value #%d: %.2f, Distance from Average: %.2f%n", (i + 1), values[i], distance);
+            }
+        } catch (NegativeArraySizeException e) {
+            System.out.println("Invalid array size. Please enter a non-negative size.");
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input for array size. Please enter a valid integer size.");
+        } finally {
+            input.close();
+        }
+    }
+}
