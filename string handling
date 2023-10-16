@@ -1,0 +1,146 @@
+1.
+
+import java.util.Scanner;
+
+public class ValidatePassword {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.print("Enter a password: ");
+            String password = scanner.nextLine();
+
+            if (isPasswordValid(password)) {
+                System.out.println("Password is valid. You're successful!");
+                break;  // Exit the loop when a valid password is entered
+            } else {
+                System.out.println("Password is invalid. Please try again.");
+            }
+        }
+
+        scanner.close();
+    }
+
+    public static boolean isPasswordValid(String password) {
+        int uppercaseCount = 0;
+        int lowercaseCount = 0;
+        int digitCount = 0;
+
+        for (char c : password.toCharArray()) {
+            if (Character.isUpperCase(c)) {
+                uppercaseCount++;
+            } else if (Character.isLowerCase(c)) {
+                lowercaseCount++;
+            } else if (Character.isDigit(c)) {
+                digitCount++;
+            }
+        }
+
+        return uppercaseCount >= 2 && lowercaseCount >= 2 && digitCount >= 2;
+    }
+}
+
+output
+Enter a password: shree12
+Password is invalid. Please try again.
+Enter a password: Sh
+Password is invalid. Please try again.
+Enter a password: SAas1222@
+Password is valid. You're successful!
+
+2.
+import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.util.HashMap;
+import java.util.Map;
+
+public class TextAnalyzer {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter the text: ");
+        String text = scanner.nextLine();
+
+        
+        int totalCharacters = text.replaceAll("\\s", "").length();
+        StringTokenizer tokenizer = new StringTokenizer(text, " ");
+        int totalWords = tokenizer.countTokens();
+
+        String[] sentences = text.split("[.!?]");
+        int totalSentences = sentences.length;
+
+        String[] words = text.split("[\\s,.!?]+");
+        String longestWord = findLongestWord(words);
+
+        double averageWordLength = calculateAverageWordLength(words);
+
+        String mostFrequentWord = findMostFrequentWord(words);
+        
+        
+        System.out.println("Total characters (excluding whitespace): " + totalCharacters);
+        System.out.println("Total words: " + totalWords);
+        System.out.println("Total sentences: " + totalSentences);
+        System.out.println("Longest word: \"" + longestWord + "\"");
+        System.out.println("Average word length: " + String.format("%.2f", averageWordLength));
+        System.out.println("Most frequent word: \"" + mostFrequentWord + "\" (appears " + getWordFrequency(words, mostFrequentWord) + " times)");
+    }
+
+    public static String findLongestWord(String[] words) {
+        String longestWord = "";
+        for (String word : words) {
+            if (word.length() > longestWord.length()) {
+                longestWord = word;
+            }
+        }
+        return longestWord;
+    }
+
+    public static double calculateAverageWordLength(String[] words) {
+        int totalLength = 0;
+        for (String word : words) {
+            totalLength += word.length();
+        }
+        return (double) totalLength / words.length;
+    }
+
+    public static String findMostFrequentWord(String[] words) {
+        Map<String, Integer> wordFrequency = new HashMap<>();
+
+        for (String word : words) {
+            wordFrequency.put(word, wordFrequency.getOrDefault(word, 0) + 1);
+        }
+
+        int maxFrequency = 0;
+        String mostFrequentWord = "";
+
+        for (Map.Entry<String, Integer> entry : wordFrequency.entrySet()) {
+            if (entry.getValue() > maxFrequency) {
+                mostFrequentWord = entry.getKey();
+                maxFrequency = entry.getValue();
+            }
+        }
+
+        return mostFrequentWord;
+    }
+
+    public static int getWordFrequency(String[] words, String word) {
+        int count = 0;
+        for (String w : words) {
+            if (w.equals(word)) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
+
+output
+
+Enter the text: 
+velammal college of engineering and technology madurai java programming
+Total characters (excluding whitespace): 63
+Total words: 9
+Total sentences: 1
+Longest word: "engineering"
+Average word length: 7.00
+Most frequent word: "college" (appears 1 times)
