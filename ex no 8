@@ -1,0 +1,93 @@
+/*
+import java.util.Scanner;
+
+public class TestThreadMany {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter a positive integer (n): ");
+        int n = scanner.nextInt();
+
+        if (n <= 0) {
+            System.out.println("Please provide a positive integer.");
+            System.exit(1);
+        }
+
+        for (int i = 1; i <= n; i++) {
+            Thread thread = new Thread(new MyThread("Thread " + i));
+            thread.start();
+        }
+        
+        scanner.close();
+    }
+
+    static class MyThread implements Runnable {
+        private String name;
+
+        public MyThread(String name) {
+            this.name = name;
+        }
+
+        @Override
+        public void run() {
+            System.out.println("Thread Name: " + name);
+        }
+    }
+}
+*/
+
+/*
+import java.util.Scanner;
+
+public class PrintNumbersInSequence {
+    private int currentNumber = 1;
+    private final int totalNumbers;
+    private final int threadCount;
+    private final Object lock = new Object();
+
+    public PrintNumbersInSequence(int totalNumbers, int threadCount) {
+        this.totalNumbers = totalNumbers;
+        this.threadCount = threadCount;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the total number of threads: ");
+        int threadCount = scanner.nextInt();
+
+        System.out.print("Enter the total number of numbers to print: ");
+        int totalNumbers = scanner.nextInt();
+
+        if (threadCount < 1 || totalNumbers < 1) {
+            System.out.println("Both thread count and total numbers must be greater than 0.");
+            return;
+        }
+
+        PrintNumbersInSequence printer = new PrintNumbersInSequence(totalNumbers, threadCount);
+
+        for (int i = 0; i < threadCount; i++) {
+            Thread thread = new Thread(() -> printer.printNumbers());
+            thread.start();
+        }
+    }
+
+    public void printNumbers() {
+        synchronized (lock) {
+            while (currentNumber <= totalNumbers) {
+                if (currentNumber % threadCount == Thread.currentThread().getId() % threadCount) {
+                    System.out.println("Thread " + Thread.currentThread().getId() + ": " + currentNumber);
+                    currentNumber++;
+                    lock.notifyAll();
+                } else {
+                    try {
+                        lock.wait();
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                    }
+                }
+            }
+        }
+    }
+}
+*/
