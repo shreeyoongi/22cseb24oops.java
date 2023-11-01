@@ -1,0 +1,129 @@
+1.
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class LineCounts {
+    public static void main(String[] args) {
+        if (args.length == 0) {
+            System.out.println("Usage: java LineCounts <file1> <file2> <file3> ...");
+            return;
+        }
+
+        for (String fileName : args) {
+            try {
+                int lineCount = countLinesInFile(fileName);
+                System.out.println("File: " + fileName + " contains " + lineCount + " lines.");
+            } catch (IOException e) {
+                System.err.println("Error reading file: " + fileName);
+            }
+        }
+    }
+
+    public static int countLinesInFile(String fileName) throws IOException {
+        int lineCount = 0;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            while (reader.readLine() != null) {
+                lineCount++;
+            }
+        }
+
+        return lineCount;
+    }
+}
+
+output
+javac LineCounts.java
+java LineCounts file1.txt file2.txt file3.txt
+
+
+
+2.
+import java.io.File;
+
+public class FileInfo {
+    public static void main(String[] args) {
+        // Get the file name from the user
+        java.util.Scanner input = new java.util.Scanner(System.in);
+        System.out.print("Enter the file name: ");
+        String fileName = input.nextLine();
+        input.close();
+
+        // Create a File object with the specified file name
+        File file = new File(fileName);
+
+        // Check if the file exists
+        if (file.exists()) {
+            System.out.println("File exists.");
+
+            // Check if the file is readable and/or writable
+            if (file.canRead()) {
+                System.out.println("File is readable.");
+            }
+            if (file.canWrite()) {
+                System.out.println("File is writable.");
+            }
+
+            // Determine the type of file
+            if (file.isFile()) {
+                System.out.println("File type: Regular File");
+            } else if (file.isDirectory()) {
+                System.out.println("File type: Directory");
+            }
+
+            // Get the length of the file in bytes
+            System.out.println("File length (bytes): " + file.length());
+        } else {
+            System.out.println("File does not exist.");
+        }
+    }
+}
+output
+javac FileInfo.java
+java FileInfo
+
+3.
+import java.io.*;
+
+public class ByteCharacterStreamExample {
+    public static void main(String[] args) {
+        // Define the source and destination file names
+        String sourceFileName = "source.dat";
+        String destinationFileName = "destination.dat";
+
+        // Using Byte Streams to read and write binary data
+        try {
+            FileInputStream byteInputStream = new FileInputStream(sourceFileName);
+            FileOutputStream byteOutputStream = new FileOutputStream(destinationFileName);
+            
+            int byteData;
+            while ((byteData = byteInputStream.read()) != -1) {
+                byteOutputStream.write(byteData);
+            }
+            
+            byteInputStream.close();
+            byteOutputStream.close();
+            System.out.println("Binary data copied successfully using Byte Streams.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Using Character Streams to read and write binary data
+        try {
+            FileReader charInputStream = new FileReader(sourceFileName);
+            FileWriter charOutputStream = new FileWriter(destinationFileName);
+            
+            int charData;
+            while ((charData = charInputStream.read()) != -1) {
+                charOutputStream.write(charData);
+            }
+            
+            charInputStream.close();
+            charOutputStream.close();
+            System.out.println("Binary data copied successfully using Character Streams.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
