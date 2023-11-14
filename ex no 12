@@ -1,0 +1,103 @@
+//1st
+import java.util.Arrays;
+import java.util.List;
+
+public class GenericMethods {
+
+    // a. Count the number of odd integers in an integer list
+    public static <T extends Number> int countOddIntegers(List<T> list) {
+        int count = 0;
+        for (T element : list) {
+            if (element.intValue() % 2 != 0) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    // b. Exchange the positions of two different elements in an array
+    public static <T> void exchangeElements(T[] array, int index1, int index2) {
+        if (index1 >= 0 && index1 < array.length && index2 >= 0 && index2 < array.length) {
+            T temp = array[index1];
+            array[index1] = array[index2];
+            array[index2] = temp;
+        } else {
+            System.out.println("Invalid indices provided.");
+        }
+    }
+
+    // c. Find the maximal element in the range [begin, end] of a list
+    public static <T extends Comparable<T>> T findMaxElementInRange(List<T> list, int begin, int end) {
+        if (begin < 0 || end >= list.size() || begin > end) {
+            System.out.println("Invalid range.");
+            return null;
+        }
+
+        T maxElement = list.get(begin);
+        for (int i = begin + 1; i <= end; i++) {
+            if (list.get(i).compareTo(maxElement) > 0) {
+                maxElement = list.get(i);
+            }
+        }
+
+        return maxElement;
+    }
+
+    public static void main(String[] args) {
+        // Example usage
+
+        // a. Count odd integers
+        List<Integer> integerList = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        int oddCount = countOddIntegers(integerList);
+        System.out.println("Number of odd integers: " + oddCount);
+
+        // b. Exchange array elements
+        String[] strArray = {"apple", "banana", "cherry", "date"};
+        System.out.println("Before exchange: " + Arrays.toString(strArray));
+        exchangeElements(strArray, 1, 3);
+        System.out.println("After exchange: " + Arrays.toString(strArray));
+
+        // c. Find max element in range
+        List<Integer> anotherIntegerList = List.of(3, 7, 1, 9, 5, 2, 8, 6, 4);
+        int beginIndex = 2;
+        int endIndex = 7;
+        Integer maxElement = findMaxElementInRange(anotherIntegerList, beginIndex, endIndex);
+
+        if (maxElement != null) {
+            System.out.println("Max element in the range [" + beginIndex + ", " + endIndex + "]: " + maxElement);
+        }
+    }
+}
+
+//2nd
+public class GenericSearch<T> {
+    public static <T> boolean searchElement(T[] array, T key) {
+        for (T element : array) {
+            if (element.equals(key)) {
+                return true; // Element found
+            }
+        }
+        return false;
+    }
+
+    public static void main(String[] args) {
+
+        Integer[] intArray = {1, 2, 3, 4, 5};
+        int searchInt = 3;
+
+        if (searchElement(intArray, searchInt)) {
+            System.out.println(searchInt + " found in the array.");
+        } else {
+            System.out.println(searchInt + " not found in the array.");
+        }
+
+        String[] strArray = {"apple", "banana", "orange", "grape"};
+        String searchString = "orange";
+
+        if (searchElement(strArray, searchString)) {
+            System.out.println(searchString + " found in the array.");
+        } else {
+            System.out.println(searchString + " not found in the array.");
+        }
+    }
+}
