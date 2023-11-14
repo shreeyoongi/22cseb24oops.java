@@ -1,0 +1,97 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
+
+public class ArraySeparator {
+    public static void main(String[] args) {
+        int[] intArray = new int[20];
+        Random random = new Random();
+        for (int i = 0; i < intArray.length; i++) {
+            intArray[i] = random.nextInt(81) + 10; // Values between 10 and 90
+        }
+
+        int sum = Arrays.stream(intArray).sum();
+        double average = (double) sum / intArray.length;
+
+        ArrayList<Integer> belowAverageList = new ArrayList<>();
+        ArrayList<Integer> aboveAverageList = new ArrayList<>();
+
+        for (int value : intArray) {
+            if (value < average) {
+                belowAverageList.add(value);
+            } else {
+                aboveAverageList.add(value);
+            }
+        }
+
+        System.out.println("Original Array: " + Arrays.toString(intArray));
+
+        System.out.println("Sum: " + sum);
+        System.out.println("Average: " + average);
+
+//2nd
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+class Student {
+    String name;
+    int rollNo;
+    double cgpa;
+
+    public Student(String name, int rollNo, double cgpa) {
+        this.name = name;
+        this.rollNo = rollNo;
+        this.cgpa = cgpa;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getRollNo() {
+        return rollNo;
+    }
+
+    public double getCgpa() {
+        return cgpa;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "name='" + name + '\'' +
+                ", rollNo=" + rollNo +
+                ", cgpa=" + cgpa +
+                '}';
+    }
+}
+
+public class StudentComparatorExample {
+    public static void main(String[] args) {
+        // Create an ArrayList to store student information
+        ArrayList<Student> studentList = new ArrayList<>();
+
+        for (int i = 1; i <= 20; i++) {
+            studentList.add(new Student("Student" + i, i, Math.random() * 4.0));
+        }
+
+        System.out.println("Unsorted Student Details:");
+        for (Student student : studentList) {
+            System.out.println(student);
+        }
+
+        Collections.sort(studentList, Comparator.comparingDouble(Student::getCgpa).reversed());
+
+        System.out.println("\nSorted Student Details (based on CGPA):");
+        for (Student student : studentList) {
+            System.out.println(student);
+        }
+    }
+}
+
+        System.out.println("Values below average: " + belowAverageList);
+
+        System.out.println("Values above average: " + aboveAverageList);
+    }
+}
